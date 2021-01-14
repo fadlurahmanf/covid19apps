@@ -184,42 +184,49 @@ class DataSearch extends SearchDelegate<String>{
           return query.isEmpty ? Center(child: Text('isi dulu'),) : ListView.builder(
             itemCount: listrs.length,
             itemBuilder: (context, index){
-              return Column(
-                children: <Widget>[
-                  GestureDetector(
-                    onTap: (){
-                    },
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                      margin: EdgeInsets.symmetric(vertical: 10),
-                      height: 200,
-                      width: 350,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(listrs[index].namarumahsakit, style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.0, fontSize: 16),),
-                          SizedBox(height: 5,),
-                          Text(listrs[index].daerah, style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.0, fontSize: 16)),
-                          SizedBox(height: 5,),
-                          Text(listrs[index].notelp==null? '-': listrs[index].notelp, style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.0, fontSize: 16)),
-                          SizedBox(height: 5,),
-                          Text(listrs[index].alamat),
-                        ],
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.orange,
-                        border: Border.all(color: Colors.red),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.red,
-                            offset: Offset(-5, 5)
-                          )
-                        ]
-                      ),
-                    ),
-                  ),
-                ],
+              return ListTile(
+                onTap: (){
+                  query = listrs[index].namarumahsakit;
+                },
+                title: Text(listrs[index].namarumahsakit, style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: -1),),
+                subtitle: Text(listrs[index].daerah, style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.0),),
               );
+              // return Column(
+              //   children: <Widget>[
+              //     GestureDetector(
+              //       onTap: (){
+              //       },
+              //       child: Container(
+              //         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+              //         margin: EdgeInsets.symmetric(vertical: 10),
+              //         height: 200,
+              //         width: 350,
+              //         child: Column(
+              //           crossAxisAlignment: CrossAxisAlignment.start,
+              //           children: <Widget>[
+              //             Text(listrs[index].namarumahsakit, style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.0, fontSize: 16),),
+              //             SizedBox(height: 5,),
+              //             Text(listrs[index].daerah, style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.0, fontSize: 16)),
+              //             SizedBox(height: 5,),
+              //             Text(listrs[index].notelp==null? '-': listrs[index].notelp, style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.0, fontSize: 16)),
+              //             SizedBox(height: 5,),
+              //             Text(listrs[index].alamat),
+              //           ],
+              //         ),
+              //         decoration: BoxDecoration(
+              //           color: Colors.orange,
+              //           border: Border.all(color: Colors.red),
+              //           boxShadow: [
+              //             BoxShadow(
+              //               color: Colors.red,
+              //               offset: Offset(-5, 5)
+              //             )
+              //           ]
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // );
             },
           );
         }

@@ -82,12 +82,16 @@ class ListDataHarianCovid{
 
 class UpdateDataCovid{
   Penambahan penambahan;
+  List<DataHarianIndonesia> listdataharianindonesia;
 
-  UpdateDataCovid({this.penambahan});
+  UpdateDataCovid({this.penambahan, this.listdataharianindonesia});
 
   factory UpdateDataCovid.fromJson(Map<String, dynamic> object){
+    var data = object["harian"] as List;
+    List<DataHarianIndonesia> dataharian = data.map((e) => DataHarianIndonesia.fromJson(e)).toList();
     return UpdateDataCovid(
       penambahan: Penambahan.fromJson(object["penambahan"]),
+      listdataharianindonesia: dataharian,
     );
   }
 }
@@ -107,6 +111,47 @@ class Penambahan{
     );
   }
 }
+
+class DataHarianIndonesia{
+  dynamic tanggal;
+  Value jumlah_meninggal;
+  Value jumlah_positif;
+  Value jumlah_sembuh;
+
+  DataHarianIndonesia({this.tanggal, this.jumlah_meninggal, this.jumlah_positif, this.jumlah_sembuh});
+
+  factory DataHarianIndonesia.fromJson(Map<String, dynamic> object){
+    return DataHarianIndonesia(
+      tanggal: object["key_as_string"],
+      jumlah_meninggal: Value.fromJson(object["jumlah_meninggal"]),
+      jumlah_positif: Value.fromJson(object["jumlah_positif"]),
+      jumlah_sembuh: Value.fromJson(object["jumlah_sembuh"]),
+    );
+  }
+}
+
+class Value{
+  dynamic value;
+  Value({this.value});
+
+  factory Value.fromJson(Map<String, dynamic> object){
+    return Value(
+      value: object["value"],
+    );
+  }
+}
+
+// class ValueJumMeninggalPerHari{
+//   dynamic jumlah_meninggal;
+//
+//   ValueJumMeninggalPerHari({this.jumlah_meninggal});
+//
+//   factory ValueJumMeninggalPerHari.fromJson(Map<String, dynamic> object){
+//     return ValueJumMeninggalPerHari(
+//       jumlah_meninggal: object["value"].toString(),
+//     );
+//   }
+// }
 
 class DataCovidTiapProvinsi{
   dynamic tanggal_terakhir;

@@ -105,7 +105,9 @@ class _DetailDataPerProvinsiState extends State<DetailDataPerProvinsi> {
               );
             }
             else{
-              return CircularProgressIndicator();
+              return Center(
+                child: CircularProgressIndicator(),
+              );
             }
           },
         ),
@@ -248,77 +250,11 @@ class DataSearch extends SearchDelegate<String>{
           return query.isEmpty? Center(child: Text(''),) : ListView.builder(
             itemCount: listdatacovidtiap_provinsi.length,
             itemBuilder: (context, index){
-              return Column(
-                children: <Widget>[
-                  SizedBox(height: 20,),
-                  GestureDetector(
-                    onTap: (){
-                    },
-                    child: Container(
-                      height: 180,
-                      width: 390,
-                      decoration: BoxDecoration(
-                          color: Colors.orange,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.red,
-                              offset: Offset(-4, 7),
-                            )
-                          ]
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Container(
-                            alignment: Alignment.center,
-                            height: 80,
-                            child: Text(listdatacovidtiap_provinsi[index].kota, style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.0, fontSize: 20),),
-                          ),
-                          Row(
-                            children: <Widget>[
-                              Container(
-                                height: 100,
-                                width: 130,
-                                color: Colors.deepOrange,
-                                child: Column(
-                                  children: <Widget>[
-                                    Text('POSITIF', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 12, letterSpacing: 1.0),),
-                                    Text(listdatacovidtiap_provinsi[index].jumlah_kasus.toString(), style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20),),
-                                  ],
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                ),
-                              ),
-                              Container(
-                                height: 100,
-                                width: 130,
-                                color: Colors.deepOrangeAccent,
-                                child: Column(
-                                  children: <Widget>[
-                                    Text('MENINGGAL', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 12, letterSpacing: 1.0),),
-                                    Text(listdatacovidtiap_provinsi[index].jumlah_meninggal.toString(), style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20),),
-                                  ],
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                ),
-                              ),
-                              Container(
-                                height: 100,
-                                width: 130,
-                                color: Colors.orangeAccent,
-                                child: Column(
-                                  children: <Widget>[
-                                    Text('SEMBUH', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 12, letterSpacing: 1.0),),
-                                    Text(listdatacovidtiap_provinsi[index].jumlah_sembuh.toString(), style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20),),
-                                  ],
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+              return ListTile(
+                onTap: (){
+                  query = listdatacovidtiap_provinsi[index].kota;
+                },
+                title: Text(listdatacovidtiap_provinsi[index].kota, style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: -1),),
               );
             },
           );
