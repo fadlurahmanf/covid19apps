@@ -12,8 +12,6 @@ class DetailPageForCovid19 extends StatefulWidget {
 
 class _DetailPageForCovid19State extends State<DetailPageForCovid19> {
 
-  List<String> apadah = ["januari", "februari"];
-
   List<LineChartData> datapositif = [];
   List<LineChartData> datasembuh = [];
 

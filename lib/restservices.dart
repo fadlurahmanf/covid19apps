@@ -1,6 +1,15 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
+
+class Global{
+  String value;
+  Global({this.value});
+  factory Global.fromJson(Map<String, dynamic> object){
+    return Global(
+      value: object['value'],
+    );
+  }
+}
 
 class ListData{
   List<DataCovidIndonesia> listdata;
@@ -220,5 +229,12 @@ class ConnectToAPI{
     var response = await http.get(APIurl);
     var jsonResult = json.decode(response.body);
     return DataCovidTiapProvinsi.fromJson(jsonResult);
+  }
+
+  static Future GlobalDataAPI(String description)async{
+    // description = 'https://api.kawalcorona.com/sembuh/';
+    var response = await http.get(description);
+    var jsonResult = json.decode(response.body);
+    return Global.fromJson(jsonResult);
   }
 }
